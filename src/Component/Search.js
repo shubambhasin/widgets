@@ -3,10 +3,11 @@ import React, { useEffect, useState } from "react";
 
 const Search = () => {
   const [term, setTerm] = useState("");
+  const [result, setResult] = useState([]);
 
   useEffect(() => {
     const search = async () => {
-      await axios.get("https://en.wikipedia.org/w/api.php?", {
+      const { data } = await axios.get("https://en.wikipedia.org/w/api.php?", {
         params: {
           action: "query",
           list: "search",
@@ -15,10 +16,35 @@ const Search = () => {
           srsearch: term
         }
       });
+
+      setResult(data.query.search);
     };
 
-    search();
+    const timeoutId = setTimeout(() => {
+      if (term)
+        // if the term is entered then perform search otherwise dont
+        search();
+    }, 1000);
   }, [term]);
+
+  const renderedResults = result.map((results, index) => {
+    return (
+      <div key={results.pageid} className="item">
+        <div className="right floated content">
+          <a
+            className="ui button"
+            href={`https://en.wikipedia.org?curid=${results.pageid}`}
+          >
+            Go
+          </a>
+        </div>
+        <div className="content">
+          <div className="header">{results.title}</div>
+          <span dangerouslySetInnerHTML={{ __html: results.snippet }}></span>
+        </div>
+      </div>
+    );
+  });
 
   return (
     <div>
@@ -28,6 +54,7 @@ const Search = () => {
           <input className="input" onChange={(e) => setTerm(e.target.value)} />
         </div>
       </div>
+      <div className="ui celled list">{renderedResults}</div>
     </div>
   );
 };

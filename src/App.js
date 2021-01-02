@@ -23,6 +23,8 @@ export default function App() {
     <div className="">
       <br />
       <Accordion items={items} />
+      <br />
+      <Search />
     </div>
   );
 }
