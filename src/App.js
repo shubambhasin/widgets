@@ -36,13 +36,20 @@ const options = [
 
 export default function App() {
   const [selected, setSelected] = useState(options[0]);
+  const [showDropDown, setSetShowDropDown] = useState(true);
+
   return (
     <div className="">
-      <Dropdown
-        selected={selected}
-        onSelectedChange={setSelected}
-        options={options}
-      />
+      <button onClick={() => setSetShowDropDown(!showDropDown)}>
+        Toggle dropdown
+      </button>
+      {showDropDown ? (
+        <Dropdown
+          selected={selected}
+          onSelectedChange={setSelected}
+          options={options}
+        /> // there is ternary expression above
+      ) : null}
     </div>
   );
 }
