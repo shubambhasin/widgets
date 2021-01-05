@@ -34,15 +34,38 @@ const options = [
   }
 ];
 
+const showDropDown = () => {
+  if (window.location.pathname === "/dropdown") {
+    return (
+      <Dropdown
+      // selected={selected}
+      // onSelectedChange={setSelected}
+      // options={options}
+      />
+    );
+  }
+};
+
+const showAccordion = () => {
+  if (window.location.pathname === "/") {
+    return <Accordion items={items} />;
+  }
+};
+
+const showSearch = () => {
+  if (window.location.pathname === "/search") {
+    return <Search />;
+  }
+};
+
 export default function App() {
   const [selected, setSelected] = useState(options[0]);
+
   return (
     <div className="">
-      <Dropdown
-        selected={selected}
-        onSelectedChange={setSelected}
-        options={options}
-      />
+      {showAccordion}
+      {showDropDown}
+      {showSearch}
     </div>
   );
 }
