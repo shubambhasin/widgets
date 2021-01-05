@@ -6,7 +6,7 @@ const Dropdown = ({ options, selected, onSelectedChange }) => {
   const ref = useRef();
 
   useEffect(() => {
-    document.body.addEventListener("click", () => {
+    document.body.addEventListener("click", (event) => {
       if (ref.current && ref.current.contains(event.target)) {
         return;
       }
@@ -35,7 +35,9 @@ const Dropdown = ({ options, selected, onSelectedChange }) => {
   return (
     <div ref={ref} className="ui form ">
       <div className="field">
-        <label className="label">Select a color</label>
+        <label className="label">
+          Select a color to change the text color on screen
+        </label>
         <div
           onClick={() => setOpen(!open)}
           className={`ui selection dropdown ${open ? `visible active` : ""}`}
@@ -49,6 +51,28 @@ const Dropdown = ({ options, selected, onSelectedChange }) => {
       </div>
 
       <h2 style={{ color: selected.value }}>The color is {selected.value}</h2>
+      <p style={{ color: selected.value }}>
+        {" "}
+        The standard Lorem Ipsum passage, used since the 1500s "Lorem ipsum
+        dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+        esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
+        id est laborum."{" "}
+      </p>
+      <p style={{ color: selected.value }}>
+        {" "}
+        The standard Lorem Ipsum passage, used since the 1500s "Lorem ipsum
+        dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+        esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+        cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
+        id est laborum."{" "}
+      </p>
     </div>
   );
 };

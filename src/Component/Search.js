@@ -56,6 +56,7 @@ const Search = () => {
 
   return (
     <div>
+      <h1>Welcome to Wiki Search</h1>
       <div className="ui form">
         <div className="field">
           <label>Enter Search Term</label>
