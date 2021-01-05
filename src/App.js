@@ -40,19 +40,19 @@ export default function App() {
   const [selected, setSelected] = useState(options[0]);
 
   return (
-    <div className="">
+    <div>
       <Header />
-      <Route Path="/">
+      <Route path="/">
         <Accordion items={items} />
       </Route>
-      <Route Path="/dropdown">
+      <Route path="/dropdown">
         <Dropdown
           selected={selected}
           onSelectedChange={setSelected}
           options={options}
         />
       </Route>
-      <Route Path="/search">
+      <Route path="/search">
         <Search />
       </Route>
     </div>
